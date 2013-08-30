@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LogSlider - basic demo</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!-- Load jQuery and UI -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.css" />
+		<!-- Load LogSlider -->
+		<script type="text/javascript" src="../source/jquery.ui.logSlider.js"></script>
+		
+		<style type="text/css">
+			#slider, #compare {
+				width: 100%;
+			}
+			#compare, #compare2, #compare3 {
+				background: red;
+			}
+			#compare2 {
+				width: 50%;
+			}
+			#compare3 {
+				width: 75%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="compare">&nbsp;</div>
+		<div id="slider"></div>
+		<script type="text/javascript">
+				$(function () {
+					$('#slider').logSlider({
+							maximumDecimals: 5,
+							range: [0, 100],
+							passThrough: [0.5, 25],
+							slide: (function () {
+								var compare = $('#compare');
+								return function (e, ui) {
+									var val = ui.value,
+										width = new String(val) + '%';
+									compare.width(width);
+								}
+							})()
+					});
+				});
+			
+		</script>
+	</body>
+</html>
